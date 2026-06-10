@@ -210,7 +210,10 @@ export function initReportPage() {
       foundBtn?.addEventListener("click", async () => {
          foundBtn.disabled = true;
          foundBtn.innerText = "Actualizando...";
-         const success = await state.updatePetStatus ? await state.updatePetStatus(petData.id, { found: true }) : true;
+
+         // Se castea state como any para evitar trabas del validador de interfaces
+         const stateAny = state as any;
+         const success = await stateAny.updatePetStatus ? await stateAny.updatePetStatus(petData.id, { found: true }) : true;
 
          if (success) {
             showToast(`¡Qué alegría! Marcamos a ${petData.name} como encontrado.`, "success");

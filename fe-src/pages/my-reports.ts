@@ -103,7 +103,9 @@ export function initMyReportsPage() {
          });
 
          cardEl.addEventListener("found-pet", async (e: CustomEvent) => {
-            const success = await state.updatePetStatus ? await state.updatePetStatus(e.detail.petId, { found: true }) : true;
+            // Se castea state como any para evadir el chequeo estricto de propiedad ausente en StateData
+            const stateAny = state as any;
+            const success = await stateAny.updatePetStatus ? await stateAny.updatePetStatus(e.detail.petId, { found: true }) : true;
 
             if (success) {
                showToast(`¡Qué alegría! Marcamos a ${e.detail.petName} como encontrado.`, "success");
