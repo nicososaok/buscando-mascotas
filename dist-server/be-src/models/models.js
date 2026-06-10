@@ -1,0 +1,12 @@
+import { sequelize } from "../lib/sequalize";
+import { User } from "./users.js";
+import { Auth } from "./auth.js";
+import { Pet } from "./pet.js";
+import { Report } from "./report.js";
+User.hasOne(Auth, { foreignKey: "userId" });
+Auth.belongsTo(User, { foreignKey: "userId" });
+User.hasMany(Pet, { foreignKey: "userId" });
+Pet.belongsTo(User, { foreignKey: "userId" });
+Pet.hasMany(Report, { foreignKey: "petId" });
+Report.belongsTo(Pet, { foreignKey: "petId" });
+export { User, Auth, Pet, Report, sequelize };
