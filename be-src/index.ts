@@ -2,13 +2,18 @@ import express, { NextFunction, Request, Response, json } from "express";
 import cors from "cors";
 import jwt from "jsonwebtoken";
 import "dotenv/config";
+import path from "path";
+import { fileURLToPath } from "url";
 import { signUp, getToken, getUserData, updateUserData, updateUserPassword } from "./controllers/users-controller.js";
 import { createPet, getPetsAround, getMyReportedPets, updatePetData } from "./controllers/pets-controller.js";
 import { createReport, getPetReports } from "./controllers/reports-controller.js";
+import { initDatabase } from "./db/index.js";
 
 const app = express();
 const port = process.env.PORT || 3000;
 const SECRET = process.env.JWT_SECRET;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 app.use(json({ limit: "50mb" }));
 app.use(cors());
@@ -153,9 +158,15 @@ app.get("/pets/:petId/reports", checkToken, async (req, res) => {
    return res.json(reports);
 });
 
-app.use(express.static("dist/"));
+/* SERVIDO DE ARCHIVOS ESTÁTICOS Y FRONTEND */
 
-import { initDatabase } from "./db/index.js";
+const distPath = path.resolve(__dirname, "../dist");
+
+app.use(express.static(distPath));
+
+app.get("*", (req, res) => {
+   res.sendFile(path.join(distPath, "index.html"));
+});
 
 async function main() {
    try {
