@@ -6,8 +6,8 @@
     "dev:be": "tsx watch --env-file=.env be-src/index.ts",
     "dev:fe": "parcel index.html",
     "sync-db": "tsx be-src/db/index.ts",
-    "start": "node -r tsconfig-paths/register dist-server/be-src/index.js",
-    "build": "tsc && parcel build index.html"
+    "build": "tsup be-src/index.ts --format cjs --out-dir dist-server && parcel build index.html",
+    "start": "node dist-server/index.js"
   },
   "dependencies": {
     "@sendgrid/mail": "^8.1.6",
@@ -24,7 +24,8 @@
     "pg": "^8.20.0",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.37.8",
-    "tsconfig-paths": "^4.2.0"
+    "tsconfig-paths": "^4.2.0",
+    "tsup": "^8.5.1"
   },
   "devDependencies": {
     "@babel/core": "^7.29.7",
