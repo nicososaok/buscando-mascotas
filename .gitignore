@@ -1,0 +1,16 @@
+# Dependencias
+node_modules/
+dist/
+build/
+.parcel-cache
+
+# Variables de entorno (¡Súper importante!)
+.env
+.env.example
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Archivos del sistema
+.DS_Store
