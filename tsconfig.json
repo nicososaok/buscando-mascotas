@@ -6,8 +6,8 @@
     "allowImportingTsExtensions": true,
     "rewriteRelativeImportExtensions": true,
     "noEmit": false,
-    "outDir": "./dist",
-    "rootDir": "./src",
+    "outDir": "./dist-server",
+    "rootDir": "./",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -15,9 +15,11 @@
     "isolatedModules": true
   },
   "include": [
-    "src/**/*.ts"
+    "be-src/**/*.ts",
+    "fe-src/**/*.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "dist"
   ]
 }
