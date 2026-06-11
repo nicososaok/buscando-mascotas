@@ -6,8 +6,8 @@
     "dev:be": "tsx watch --env-file=.env be-src/index.ts",
     "dev:fe": "parcel index.html",
     "sync-db": "tsx be-src/db/index.ts",
-    "build": "tsup be-src/index.ts --format cjs --out-dir dist-server && parcel build index.html",
-    "start": "node dist-server/index.js"
+    "build": "tsc && parcel build index.html",
+    "start": "node dist-server/be-src/index.js"
   },
   "dependencies": {
     "@sendgrid/mail": "^8.1.6",
