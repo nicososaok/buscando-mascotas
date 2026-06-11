@@ -1,9 +1,12 @@
-import { sequelize } from "../models/models.js";
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.initDatabase = initDatabase;
+const models_js_1 = require("../models/models.js");
 async function initDatabase() {
     try {
-        await sequelize.authenticate();
+        await models_js_1.sequelize.authenticate();
         console.log("🔄 Conexión a la base de datos establecida exitosamente.");
-        await sequelize.sync({ alter: true });
+        await models_js_1.sequelize.sync({ alter: true });
         console.log("✅ Todos los modelos se sincronizaron correctamente con la DB.");
     }
     catch (error) {
@@ -11,4 +14,3 @@ async function initDatabase() {
         process.exit(1);
     }
 }
-export { initDatabase };

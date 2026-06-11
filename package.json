@@ -4,10 +4,10 @@
   "type": "module",
   "scripts": {
     "dev:be": "tsx watch --env-file=.env be-src/index.ts",
+    "build": "tsc --project tsconfig.server.json && echo {\"type\": \"commonjs\"} > dist-server/package.json && parcel build index.html",
+    "start": "node dist-server/be-src/index.js",
     "dev:fe": "parcel index.html",
-    "sync-db": "tsx be-src/db/index.ts",
-    "build": "tsc && parcel build index.html",
-    "start": "node dist-server/be-src/index.js"
+    "sync-db": "tsx be-src/db/index.ts"
   },
   "dependencies": {
     "@sendgrid/mail": "^8.1.6",

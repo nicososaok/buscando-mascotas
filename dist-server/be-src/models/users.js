@@ -1,12 +1,15 @@
-import { DataTypes } from "sequelize";
-import { sequelize } from "../lib/sequalize";
-export const User = sequelize.define("user", {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.User = void 0;
+const sequelize_1 = require("sequelize");
+const sequalize_1 = require("../lib/sequalize");
+exports.User = sequalize_1.sequelize.define("user", {
     name: {
-        type: DataTypes.STRING,
+        type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
     email: {
-        type: DataTypes.STRING,
+        type: sequelize_1.DataTypes.STRING,
         allowNull: false,
         unique: true,
         validate: {
@@ -14,7 +17,7 @@ export const User = sequelize.define("user", {
         },
     },
     location: {
-        type: DataTypes.STRING,
+        type: sequelize_1.DataTypes.STRING,
         allowNull: true,
     },
 }, {});

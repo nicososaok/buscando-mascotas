@@ -1,8 +1,11 @@
-import { DataTypes } from "sequelize";
-import { sequelize } from "../lib/sequalize";
-export const Auth = sequelize.define("auth", {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Auth = void 0;
+const sequelize_1 = require("sequelize");
+const sequalize_1 = require("../lib/sequalize");
+exports.Auth = sequalize_1.sequelize.define("auth", {
     email: {
-        type: DataTypes.STRING,
+        type: sequelize_1.DataTypes.STRING,
         allowNull: false,
         unique: true,
         validate: {
@@ -10,11 +13,11 @@ export const Auth = sequelize.define("auth", {
         },
     },
     password: {
-        type: DataTypes.STRING,
+        type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
     userId: {
-        type: DataTypes.INTEGER,
+        type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
 }, {});

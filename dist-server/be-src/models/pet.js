@@ -1,33 +1,36 @@
-import { DataTypes } from "sequelize";
-import { sequelize } from "../lib/sequalize";
-export const Pet = sequelize.define("pet", {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Pet = void 0;
+const sequelize_1 = require("sequelize");
+const sequalize_1 = require("../lib/sequalize");
+exports.Pet = sequalize_1.sequelize.define("pet", {
     name: {
-        type: DataTypes.STRING,
+        type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
     status: {
-        type: DataTypes.ENUM("lost", "found"),
+        type: sequelize_1.DataTypes.ENUM("lost", "found"),
         allowNull: false,
         defaultValue: "lost",
     },
     location: {
-        type: DataTypes.STRING,
+        type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
     pictureURL: {
-        type: DataTypes.STRING(500),
+        type: sequelize_1.DataTypes.STRING(500),
         allowNull: false,
     },
     lat: {
-        type: DataTypes.FLOAT,
+        type: sequelize_1.DataTypes.FLOAT,
         allowNull: true,
     },
     lng: {
-        type: DataTypes.FLOAT,
+        type: sequelize_1.DataTypes.FLOAT,
         allowNull: true,
     },
     userId: {
-        type: DataTypes.INTEGER,
+        type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
 }, {});

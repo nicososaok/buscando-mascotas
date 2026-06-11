@@ -1,28 +1,31 @@
-import { DataTypes } from "sequelize";
-import { sequelize } from "../lib/sequalize";
-export const Report = sequelize.define("report", {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Report = void 0;
+const sequelize_1 = require("sequelize");
+const sequalize_1 = require("../lib/sequalize");
+exports.Report = sequalize_1.sequelize.define("report", {
     reporterName: {
-        type: DataTypes.STRING,
+        type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
     reporterPhone: {
-        type: DataTypes.STRING,
+        type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
     locationDescription: {
-        type: DataTypes.TEXT,
+        type: sequelize_1.DataTypes.TEXT,
         allowNull: false,
     },
     lat: {
-        type: DataTypes.FLOAT,
+        type: sequelize_1.DataTypes.FLOAT,
         allowNull: true,
     },
     lng: {
-        type: DataTypes.FLOAT,
+        type: sequelize_1.DataTypes.FLOAT,
         allowNull: true,
     },
     petId: {
-        type: DataTypes.INTEGER,
+        type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
 }, {});

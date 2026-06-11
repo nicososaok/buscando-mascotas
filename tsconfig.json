@@ -1,20 +1,17 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "noEmit": false,
-    "outDir": "./dist-server",
-    "rootDir": "./",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "noEmit": true,
     "strict": false,
     "noImplicitAny": false,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true
+    "isolatedModules": false
   },
   "include": [
-    "be-src/**/*.ts",
     "fe-src/**/*.ts"
   ],
   "exclude": [

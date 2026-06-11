@@ -1,8 +1,12 @@
-import { Auth, Report, Pet } from "../models/models";
-import { sgMail } from "../lib/sendgrid.js";
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.createReport = createReport;
+exports.getPetReports = getPetReports;
+const models_1 = require("../models/models");
+const sendgrid_js_1 = require("../lib/sendgrid.js");
 async function createReport(data) {
     try {
-        const newReport = await Report.create({
+        const newReport = await models_1.Report.create({
             reporterName: data.reporterName,
             reporterPhone: data.reporterPhone,
             locationDescription: data.locationDescription,
@@ -10,10 +14,10 @@ async function createReport(data) {
             lng: data.lng || null,
             petId: data.petId,
         });
-        const pet = await Pet.findByPk(data.petId);
+        const pet = await models_1.Pet.findByPk(data.petId);
         if (!pet)
             throw new Error("Mascota no encontrada");
-        const authOwner = await Auth.findOne({ where: { userId: pet.dataValues.userId } });
+        const authOwner = await models_1.Auth.findOne({ where: { userId: pet.dataValues.userId } });
         if (authOwner && authOwner.dataValues.email) {
             const msg = {
                 to: authOwner.dataValues.email,
@@ -28,7 +32,7 @@ async function createReport(data) {
                <p>Ponete en contacto lo antes posible. ¡Muchos éxitos!</p>
             `,
             };
-            await sgMail.send(msg);
+            await sendgrid_js_1.sgMail.send(msg);
             console.log("📧 Mail de avistaje enviado correctamente al dueño");
         }
         return { success: true, reportId: newReport.dataValues.id };
@@ -40,7 +44,7 @@ async function createReport(data) {
 }
 async function getPetReports(petId) {
     try {
-        const reports = await Report.findAll({ where: { petId } });
+        const reports = await models_1.Report.findAll({ where: { petId } });
         return reports;
     }
     catch (error) {
@@ -48,4 +52,3 @@ async function getPetReports(petId) {
         return [];
     }
 }
-export { createReport, getPetReports };
