@@ -1,4 +1,4 @@
-const API_BASE_URL = process.env.API_BASE_URL || "http://localhost:3000";
+const API_BASE_URL = process.env.API_BASE_URL || "";
 
 interface StateData {
    userId: number | null;
@@ -127,7 +127,7 @@ const state = {
       const cs = this.getState();
       try {
          const res = await fetch(`${API_BASE_URL}/user/profile`, {
-            method: "PUT",
+            method: "PATCH",
             headers: {
                "Content-Type": "application/json",
                Authorization: `Bearer ${cs.token}`,
@@ -151,7 +151,7 @@ const state = {
       const cs = this.getState();
       try {
          const res = await fetch(`${API_BASE_URL}/user/password`, {
-            method: "PUT",
+            method: "PATCH",
             headers: {
                "Content-Type": "application/json",
                Authorization: `Bearer ${cs.token}`,
@@ -225,7 +225,7 @@ const state = {
       const cs = this.getState();
       try {
          const res = await fetch(`${API_BASE_URL}/pets/${petId}`, {
-            method: "PUT",
+            method: "PATCH",
             headers: {
                "Content-Type": "application/json",
                Authorization: `Bearer ${cs.token}`,
