@@ -4,8 +4,8 @@
   "type": "module",
   "scripts": {
     "dev:be": "tsx watch --env-file=.env be-src/index.ts",
-    "build": "tsc --project tsconfig.server.json && echo {\"type\": \"commonjs\"} > dist-server/package.json && parcel build index.html",
-    "start": "node dist-server/be-src/index.js",
+    "build": "tsup be-src/index.ts --out-dir dist-server --format esm --clean --minify && parcel build index.html",
+    "start": "node dist-server/index.js",
     "dev:fe": "parcel index.html",
     "sync-db": "tsx be-src/db/index.ts"
   },
@@ -24,8 +24,7 @@
     "pg": "^8.20.0",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.37.8",
-    "tsconfig-paths": "^4.2.0",
-    "tsup": "^8.5.1"
+    "tsconfig-paths": "^4.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.29.7",
@@ -37,6 +36,7 @@
     "@types/leaflet": "^1.9.21",
     "@types/node": "^20.0.0",
     "babel-plugin-transform-remove-console": "^6.9.4",
+    "tsup": "^8.5.1",
     "tsx": "^4.21.0",
     "typescript": "^5.0.0"
   }

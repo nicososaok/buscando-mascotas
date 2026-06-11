@@ -13,6 +13,9 @@ const app = express();
 const port = process.env.PORT || 3000;
 const SECRET = process.env.JWT_SECRET;
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 app.use(json({ limit: "50mb" }));
 app.use(cors());
 
